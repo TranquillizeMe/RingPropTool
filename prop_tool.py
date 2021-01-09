@@ -18,7 +18,6 @@ std_out_text.set("Any output will go here.")
 std_out = Label(root, textvariable=std_out_text).grid(row=2, column=1, padx=5, pady=5)
 ALPHA_INDEX = 3
 
-
 def selectDifficultyFile():
     """
     Pops open dialog for selecting the difficulty file to change.
