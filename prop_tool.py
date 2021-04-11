@@ -45,7 +45,7 @@ def adjustBrightnessOfRingProp():
                 map_data = json.loads(data.decode(chardet.detect(data)['encoding']))
             for i in range(len(map_data["_events"])):
                 if "_customData" in map_data["_events"][i].keys():
-                    if "_propID" in map_data["_events"][i]["_customData"].keys() and "_color" in map_data["_events"][i][
+                    if "_lightID" in map_data["_events"][i]["_customData"].keys() and "_color" in map_data["_events"][i][
                         "_customData"].keys():
                         for j in range(len(map_data["_events"][i]["_customData"]["_color"])):
                             if j == ALPHA_INDEX:
@@ -61,7 +61,7 @@ def adjustBrightnessOfRingProp():
 
 def changeRingPropEventsToOnsAndOffs():
     """
-    Logic for converting any propID lights to solids.
+    Logic for converting any lightID lights to solids.
     :return: none
     """
     if difficulty_file_path != "":
@@ -72,7 +72,7 @@ def changeRingPropEventsToOnsAndOffs():
                 map_data = json.loads(data.decode(chardet.detect(data)['encoding']))
             for i in range(len(map_data["_events"])):
                 if "_customData" in map_data["_events"][i].keys():
-                    if "_propID" in map_data["_events"][i]["_customData"].keys() and int(
+                    if "_lightID" in map_data["_events"][i]["_customData"].keys() and int(
                             map_data["_events"][i]["_value"]) not in [0, 5]:
                         map_data["_events"][i]["_value"] = 5
             std_out_text.set('Done! Changed all Fades and Flashes on individual rings to Ons.')
@@ -85,7 +85,7 @@ def changeRingPropEventsToOnsAndOffs():
 # Bullet sucks at coding lmao yoinking Tranqs code
 def changePropEventsFromOffsToOns():
     """
-    Logic for converting any propID Off events into invisible Ons
+    Logic for converting any lightID Off events into invisible Ons
     :return: none
     """
     if difficulty_file_path != "":
@@ -96,7 +96,7 @@ def changePropEventsFromOffsToOns():
                 map_data = json.loads(data.decode(chardet.detect(data)['encoding']))
             for i in range(len(map_data["_events"])):
                 if "_customData" in map_data["_events"][i].keys():
-                    if "_propID" in map_data["_events"][i]["_customData"].keys() and map_data["_events"][i]["_value"] == 0: # Off Event
+                    if "_lightID" in map_data["_events"][i]["_customData"].keys() and map_data["_events"][i]["_value"] == 0: # Off Event
 
                         j = i # Look at previous events of same type and event to On of previous color
                         while j > 0:
